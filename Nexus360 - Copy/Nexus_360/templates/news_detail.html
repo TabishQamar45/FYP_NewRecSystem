@@ -1,0 +1,38 @@
+<!-- Show news detail of each article-->
+{% extends 'base.html'%}
+{% block title %}{{object.title}}{% endblock %}
+{% block content %}
+<br>
+<div class="container-bg">
+  <div class="container">
+    <div class="row">
+      <div class="col-8">
+        <h1>{{ object.title }}</h1>
+        <small>{{object.News_content|safe}} - {{object.author}}
+          <!-- <a href="{% url 'updateArticle' object.pk %}" class="btn btn-link">Edit</a> -->
+          <!-- <a href="{% url 'deleteArticle' object.pk %}" class="btn btn-link">Delete</a> -->
+        </small>
+        <hr>
+        {{object.date}}
+      </div>
+      <div class="col-4 stretch-card grid-margin" >
+        <div class="card bg-secondary text-white">
+          <div class="card-body">
+            <h2>You may also like</h2>
+            <div class="d-flex border-bottom-white pb-4 pt-4 align-items-center justify-content-between">
+              <div class="pr-3">
+                {% for key,value in similar.items %}
+                <a href="http://127.0.0.1:8000/Nexus_360/article/{{key}}" style="color: aliceblue; margin-bottom: 5px;">{{value}}</a> <br>
+                {% endfor %} 
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br><br>
+<a href="{% url 'home' %}" class="btn btn-success">Back</a>
+
+{%endblock%}

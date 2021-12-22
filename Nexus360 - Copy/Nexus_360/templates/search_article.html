@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  {% if searched %}
+    <h2>You searched for...{{ searched }}</h2>
+    <br>
+    <!-- News Detail -->
+    <div class="container py-3">
+        	<hr>
+        	<br>
+            	<div class="row row-cols-2 row-cols-md-3 row-cols-xl-4">
+                {% for news in newsSearch %}
+
+            		<div class="col-sm-12 col-md-6 col-lg-3 pb-4 col-xl-4 col-12 ">
+
+            			<div class="card h-50" style="border:none">
+                      <!-- <img src="" class="card-img-top" alt=""> -->
+            			  	<div class="card-body">
+            					  <h5 class="card-title">{{news.title}}</h5>
+            				  	<p class="card-text text-muted " style="font-size:12px"><a href="{% url 'category' news.category %}">{{news.category}}</a></p>
+                        <a href="{% url 'article_detail' news.pk %}" class="btn btn-success">Detail</a>
+            			  	</div>
+            			</div>
+        		    </div>
+              {% endfor %}
+
+        	</div>
+
+    </div>
+  {% else %}
+    <h2>You forget to searched a News Article... </h2>
+
+  {% endif %}
+
+{% endblock %}

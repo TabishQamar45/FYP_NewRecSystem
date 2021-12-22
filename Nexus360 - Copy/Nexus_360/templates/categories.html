@@ -1,0 +1,58 @@
+<!-- Display the news Categories by different pages -->
+
+
+{% extends 'base.html'%}
+
+{% load static %}
+
+{% block content %}
+<br>
+
+{% if category_post %}
+  <h1>{{ cats }}</h1>
+
+
+  <div class="container py-3">
+      	<hr>
+      	<br>
+          	<div class="row">
+            {% for category in category_post %}
+
+          		<div class="col-sm-12 col-md-6 col-lg-3 pb-4 d-flex ">
+          			<div class="card h-50" style="border:none">
+                  <div class="card card-body flex-fill">
+                    {% if category.category == "sport" %}
+                      <img src="{% static 'images/sports.jpg' %}" class="card-img-top img-fluid" alt="">
+                    {% elif category.category == "POLITICS" %}
+                      <img src="{% static 'images/Politics.jpg' %}" class="card-img-top img-fluid" alt="">
+                    {% elif category.category == "entertainment" %}
+                      <img src="{% static 'images/Entertainment.jpg' %}" class="card-img-top img-fluid" alt="">
+                    {% elif category.category == "tech" %}
+                      <img src="{% static 'images/Tech.jpeg' %}" class="card-img-top img-fluid" alt="">
+                    {% elif category.category == "business" %}
+                      <img src="{% static 'images/Business.jpeg' %}" class="card-img-top img-fluid" alt="">
+
+                    {% endif %}
+
+                    <!-- <img src="{% static 'images/sports.jpg' %}" class="card-img-top" alt=""> -->
+          			  	<div class="card-body">
+          					<h5 class="card-title text-truncate">{{category.title}}</h5>
+          				  	<p class="card-text" style="font-size:12px">{{category.category}}</p>
+                      <p class="card-text text-truncate">{{category.News_content}}</p>
+                      <a href="{% url 'article_detail' category.pk %}" class="btn btn-success">Detail</a>
+
+          			  	</div>
+                  </div>
+          			</div>
+      		    </div>
+            {% endfor %}
+
+      	</div>
+
+  </div>
+{% else %}
+  <h2>Sorry this page does not exist....</h2>
+{% endif %}
+
+
+{%endblock%}

@@ -1,0 +1,17 @@
+<!-- Delete an article (Access to the admin only) -->
+
+{% extends 'base.html'%}
+{% block content %}
+<h2>Remove News Article </h2>
+<br>
+
+<h5>Delete: {{object.title}}</h5>
+<br>
+<div class="form-group">
+  <form method="POST">
+    {% csrf_token %}
+    <strong>Are you sure?!</strong><br><br>
+    <button class="btn btn-primary">Delete Post!</button>
+  </form>
+</div>
+{% endblock %}
